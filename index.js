@@ -4,7 +4,7 @@ const fs = require('fs')
 
 
 
-const bot = new Telegraf("token");
+const bot = new Telegraf("882893548:AAG4QhL3oJ0ybzIY7PbwKggch79V4wFyx0o");
 
 
 bot.start((ctx) => ctx.reply('Привет, я бот для поиска GIF-ок, напиши любое слово, и я поищу что-то интересное специально для тебя.'));
