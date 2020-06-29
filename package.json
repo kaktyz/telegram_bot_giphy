@@ -1,0 +1,25 @@
+{
+  "name": "telegram_bot_giphy",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "giphy-api": "^2.0.1",
+    "telegraf": "^3.38.0",
+    "xmlhttprequest": "^1.8.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kaktyz/telegram_bot_giphy.git"
+  },
+  "author": "iton",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kaktyz/telegram_bot_giphy/issues"
+  },
+  "homepage": "https://github.com/kaktyz/telegram_bot_giphy#readme"
+}

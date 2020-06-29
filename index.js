@@ -1,25 +1,26 @@
 const Telegraf = require('telegraf')
-
+const giphy = require('giphy-api')('ugaftL4Bbn7PRk8kzctvHsfVeSq4iNuM');
+// const bot = new Telegraf("1144440917:AAEBfc77q_c7-dH_4OjWcS9WuQmwoMrNl1o");
 const bot = new Telegraf("882893548:AAG4QhL3oJ0ybzIY7PbwKggch79V4wFyx0o");
 
+
 bot.start((ctx) => ctx.reply('Привет, я бот для поиска GIF-ок, напиши любое слово, и я поищу что-то интересное специально для тебя.'));
-bot.help((ctx) => ctx.reply('Пришли мне стикер'));
-bot.on('sticker', (ctx) => ctx.reply('👍'));
-bot.hears('джейк', (ctx) => ctx.replyWithAnimation('https://99px.ru/sstorage/86/2017/07/image_86100717001237906221.gif'));
+bot.help((ctx) => ctx.reply('Напиши слово и я найду прикольную гифку для тебя'));
 bot.hears('Слава', (ctx) => {return ctx.replyWithAnimation('https://i.gifer.com/OJOg.gif')});
 
 let settings = {
     "api" : "https://api.giphy.com/v1/gifs/search?",
     "apiKey" : "api_key=ugaftL4Bbn7PRk8kzctvHsfVeSq4iNuM",
     "query" : "&q=",
-    "limit" : "&limit=1",
+    "limit" : "&limit=10",
+    "rating" : "&rating=G",
     "language" : "&lang=en"
 };
 
 bot.use((ctx) => {
 
     let message = ctx.message.text;
-    let urlOfGif =  settings.api + settings.apiKey + settings.query + message + settings.limit + settings.language;
+    let urlOfGif =  settings.api + settings.apiKey + settings.query + message + settings.limit + settings.rating + settings.language;
 
     console.log("Текст " + message)
     console.log("урл " + urlOfGif)
@@ -30,12 +31,35 @@ bot.use((ctx) => {
     xhr.send(null);
     
     let res = JSON.parse(xhr.responseText);
-    let gif = res.data[0].images.original.url;
-    // let gif = res.data[0].images;
 
-    return ctx.reply(`${gif}`)
+    let rand = Math.floor(Math.random() * 10);
+    let gif = res.data[rand].images.original.url;
+/**
+ * TODO: изменить приходящую кодировку на UTF8
+ */
+    // const encodedGif = encodeURI(gif);
+    // return ctx.replyWithAnimation(`${encodedGif}`)
+
+    return ctx.replyWithAnimation(`${gif}`)
     
 })
+
+// bot.use((ctx) => {
+
+//     let message = ctx.message.text;
+    
+//     giphy.random(message).then(function (res) {
+
+//             console.log(res);
+// /**
+//  * TODO: возвращает не JSON, разобраться
+//  */
+//             let result = JSON.parse(res.responseText)
+//             return ctx.replyWithAnimation(`${result.data.images.original}`)
+      
+//     });
+    
+// })
 
 /*
 
