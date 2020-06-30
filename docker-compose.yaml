@@ -2,7 +2,7 @@ version: '3'
 
 services:
    
-    my-telegram-gif-bot:
+   my-telegram-gif-bot:
     container_name: my-telegram-gif-bot
     image: itokha/my-telegram-gif-bot:1.0
     restart: always
